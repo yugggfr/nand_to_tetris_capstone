@@ -1,0 +1,25 @@
+// Memory.hdl -- the full Hack data memory.
+//
+//   0     .. 16383  RAM16K    (address[14] = 0)
+//   16384 .. 24575  Screen    (address[14..13] = 10)
+//   24576           Keyboard  (address[14..13] = 11, rest 0)
+
+CHIP Memory {
+    IN in[16], load, address[15];
+    OUT out[16];
+
+    PARTS:
+    // decide which chip a write goes to
+    DMux(in=load, sel=address[14], a=loadRam, b=loadHigh);
+    DMux(in=loadHigh, sel=address[13], a=loadScreen, b=loadKbd);   // loadKbd is unused:
+                                                                  // the keyboard is read-only
+
+    RAM16K(in=in, load=loadRam,    address=address[0..13], out=ramOut);
+    Screen(in=in, load=loadScreen, address=address[0..12], out=screenOut);
+    Keyboard(out=kbdOut);
+
+    // decide which chip a read comes from   (sel = address[14..13])
+    //   00 -> RAM   01 -> RAM   10 -> Screen   11 -> Keyboard
+    Mux4Way16(a=ramOut, b=ramOut, c=screenOut, d=kbdOut,
+              sel=address[13..14], out=out);
+}

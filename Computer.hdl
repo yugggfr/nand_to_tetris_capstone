@@ -1,0 +1,15 @@
+// Computer.hdl -- the complete Hack computer: ROM32K + CPU + Memory.
+// Runs the program stored in the ROM. reset = 1 restarts it from address 0.
+
+CHIP Computer {
+
+    IN reset;
+
+    PARTS:
+    ROM32K(address=pc, out=instruction);
+
+    CPU(inM=memOut, instruction=instruction, reset=reset,
+        outM=cpuOut, writeM=writeM, addressM=addressM, pc=pc);
+
+    Memory(in=cpuOut, load=writeM, address=addressM, out=memOut);
+}
