@@ -1,4 +1,5 @@
 // Computer.hdl -- the complete Hack computer: ROM32K + CPU + Memory.
+// Author: Yug Verma (Roll No.: 2501350004)
 // Runs the program stored in the ROM. reset = 1 restarts it from address 0.
 
 CHIP Computer {

@@ -1,4 +1,5 @@
 // CPU.hdl -- the Hack CPU.
+// Author: Yug Verma (Roll No.: 2501350004)
 //
 // instruction bits:  i xx a cccccc ddd jjj
 //   [15]    = 0 -> A-instruction (load the 15-bit value into A)

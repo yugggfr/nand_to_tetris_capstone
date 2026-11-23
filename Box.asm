@@ -1,15 +1,16 @@
-// Box.asm  --  Capstone, K = 82
+// Box.asm  --  Capstone, K = 04
+// Author: Yug Verma (Roll No.: 2501350004)
 //
 // While any key is pressed, a black box is drawn. When the key is released,
 // the box is erased.
 //
-// Box size, worked out from K = 82:
-//   start row = K            = 82
-//   height                   = 20 rows   (rows 82 .. 101)
-//   width = 16*((K mod 4)+1) = 16*3 = 48 pixels = 3 words, from the left edge
+// Box size, worked out from K = 04:
+//   start row = K            = 4
+//   height                   = 20 rows   (rows 4 .. 23)
+//   width = 16*((K mod 4)+1) = 16*(0+1) = 16 pixels = 1 word, from the left edge
 //
 // Row r starts at SCREEN + 32*r, so the first word of the box is at
-//   16384 + 32*82 = 19008
+//   16384 + 32*4 = 16512
 
 (MAIN)
     @KBD
@@ -27,7 +28,7 @@
     M=-1            // -1 = 1111111111111111 = 16 black pixels
 
 (DRAW)
-    @19008          // address of the first word of row 82
+    @16512          // address of the first word of row 4 (16384 + 32*4)
     D=A
     @addr
     M=D
@@ -42,10 +43,6 @@
     @addr
     A=M
     M=D             // word 1 of this row  (pixels 0..15)
-    A=A+1
-    M=D             // word 2 of this row  (pixels 16..31)
-    A=A+1
-    M=D             // word 3 of this row  (pixels 32..47)
 
     @32
     D=A

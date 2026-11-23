@@ -1,0 +1,7 @@
+# Ignore report documents and generated assets
+*.docx
+*.pdf
+report_assets/
+__pycache__/
+*.pyc
+test*

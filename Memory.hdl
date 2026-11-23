@@ -1,4 +1,5 @@
 // Memory.hdl -- the full Hack data memory.
+// Author: Yug Verma (Roll No.: 2501350004)
 //
 //   0     .. 16383  RAM16K    (address[14] = 0)
 //   16384 .. 24575  Screen    (address[14..13] = 10)

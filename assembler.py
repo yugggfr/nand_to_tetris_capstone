@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Hack assembler  --  Nand to Tetris capstone (K = 82)
+Hack assembler  --  Nand to Tetris capstone (K = 04)
+Author: Yug Verma (Roll No.: 2501350004)
 
 Usage:   python3 assembler.py Prog.asm        ->  writes Prog.hack
 
